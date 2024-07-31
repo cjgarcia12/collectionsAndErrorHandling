@@ -1,17 +1,58 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+public class Main {
+    public static int sum(List<Integer> list) {
+        int sum = 0;
+        try {
+            for (Integer el : list) {
+                sum += el;
+            }
+        } catch (Exception e) {
+            System.out.println("Please make sure all numbers are valid and not null");
+        } finally {
+            if (sum == 0) {
+                System.out.println("List is empty");
+            }
+            return sum;
         }
+
+    }
+
+    public static double average(List<Integer> list) {
+        double average = 0;
+        try {
+            average = sum(list) / (double) list.size();
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+        } finally {
+            if (list == null || list.isEmpty()) {
+                System.out.println("List is empty");
+                return 0.0;
+            } else {
+                return average;
+            }
+        }
+
+    }
+
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(1);
+        list.add(2);
+
+        Set<Integer> set = new HashSet<>(list);
+        List<Integer> listNoDupes = new ArrayList<>(set);
+        System.out.println(listNoDupes);
+        System.out.println(sum(listNoDupes));
+        System.out.println(average(listNoDupes));
     }
 }
